@@ -1,8 +1,7 @@
 var s;
 var scl = 20;
-var food; // Vektori säilöö ruuan koordinaatit.
-var score = 0; // Pistetulos
-var count = 0; // Pistelaskuri
+var food; // Vektori säilöö ruuan koordinaatit
+var score = 0; // Pistelaskuri
 var peli = false;
 var ft = 255; // Ruuan läpinäkyvyysarvo
 
@@ -32,16 +31,14 @@ function draw() {
       s.show();
       s.xspeed = 0;
       s.yspeed = 0;
-    } else {
-      //Tähän jotain taidetta?
-
-    }
+    } //else {} Tähän jotain taidetta?
+    
     noStroke();
     fill(255, 0, 100);
     textSize(28);
     textAlign(CENTER);
-    if (count != 0) {
-      text("score: " + count, width/2, height/2-60);
+    if (score != 0) {
+      text("score: " + score, width/2, height/2-60);
     }
     fill(255);
     textSize(32);
@@ -65,15 +62,15 @@ function draw() {
 
     // Laske pisteet
     if (s.total == 0 || s.total == 1) {
-      count = 0;
+      score = 0;
     } else {
-      count = s.total-1;
+      score = s.total-1;
     }
     // Näytä pistelaskuri
     fill(255, 255, 255, 55);
     textSize(20);
     textAlign(LEFT);
-    text("watermelons eaten: " + count, 25, height-30);
+    text("watermelons eaten: " + score, 25, height-30);
   }
 
   // Näytä ruoka

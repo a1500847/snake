@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html lang="fi">
-
+<html>
 <head>
 	<title>Snake</title>
 	<meta charset="UTF-8">
 	<meta name="mindi" content="ML">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
 	<script language="javascript" type="text/javascript" src="snake.js"></script>
 	<script language="javascript" type="text/javascript" src="snakeGame.js"></script>
 	<style>
 		#snake {
 			width: 500px;
+			height: 500px;
 			margin: 0 auto;
 		}
 
 		footer {
 			position: absolute;
 			bottom: 0;
-			width: 100%;
+			width: 99%;
 			font-family: Consolas, Arial;
-			font-size: 15px;
+			font-size: 13px;
 			text-align: center;
 		}
 
-		a { color: rgb(255,50,100); }
+		a {
+			color: rgb(255, 50, 100);
+		}
 	</style>
 </head>
 
@@ -32,8 +35,9 @@
 	<div id="wrapper">
 		<div id="snake"></div>
 		<footer>
-			<p><small>Snake game by <a href="https://github.com/a1500847/Snake">Mindi Laihonen</a><br
-				>Source code for this page can be found on <a href="https://github.com/a1500847/Snake">GitHub</a>.</small></p>
+			<p>
+				Source code for this page can be found on <a href="https://github.com/a1500847/Snake">GitHub</a>.
+			</p>
 		</footer>
 	</div>
 

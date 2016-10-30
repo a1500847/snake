@@ -2,7 +2,7 @@ function Snake() {
   this.x = scl*12;
   this.y = 0;
   this.xspeed = 0;
-  this.yspeed = 1; //1
+  this.yspeed = 1;
   this.total = 1;
   this.tail = [];
   this.comp = 0;  //Estää peruuttamisen
@@ -34,7 +34,11 @@ function Snake() {
     }
   }
 
+  // Käärmeen liike
   this.update = function() {
+    // Jos ruokaa ei ole syöty, lisää uusi pikseli jonon eteen,
+    // siirrä muut pikselit yhdellä alaspäin ja poista vanhin pikseli.
+    // Jos ruokaa on syöty, älä poista vanhinta pikselilä.
     if (this.total === this.tail.length) {
       for (var i = 0; i < this.tail.length-1; i++) {
         this.tail[i] = this.tail[i+1];
@@ -48,7 +52,7 @@ function Snake() {
 
   // Screen wrap around, ei kuole kun osuu seiniin
   this.wrap = function() {
-      if (this.x >= width) {
+      if (this.x > width-scl) {
           this.x = 0;
       } else if (this.x < 0) {
           this.x = width-scl;
@@ -60,6 +64,7 @@ function Snake() {
       }
   }
 
+  // Näytä käärme
   this.show = function() {
     fill(255);
     if (peli == false) {
@@ -69,6 +74,6 @@ function Snake() {
     for (var i = 0; i < this.tail.length; i++) {
       rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
-    // rect(this.x, this.y, scl, scl);
+    //rect(this.x, this.y, scl, scl);
   }
 }
