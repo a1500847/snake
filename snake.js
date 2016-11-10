@@ -5,18 +5,18 @@ function Snake() {
   this.yspeed = 1;
   this.total = 1;
   this.tail = [];
-  this.comp = 0;  //Estää peruuttamisen
+  this.last = 0;  //estää peruuttamisen
 
-  // Suunta
+  // suunta
   this.dir = function(x, y) {
     this.xspeed = x;
     this.yspeed = y;
   }
 
-  // Syö pikselin -> pituus kasvaa yhdellä
+  // syö ruuan -> total kasvaa yhdellä
   this.eat = function(pos) {
     var d = dist(this.x, this.y, pos.x, pos.y);
-    if (d < 1) {
+    if (d < scl) {
       this.total++;
       return true;
     } else {
@@ -29,16 +29,16 @@ function Snake() {
       var pos = this.tail[i];
       var d = dist(this.x, this.y, pos.x, pos.y);
       if (d < 1) {
-        peli = false;
+        game = false;
       }
     }
   }
 
-  // Käärmeen liike
+  // käärmeen liike
   this.update = function() {
-    // Jos ruokaa ei ole syöty, lisää uusi pikseli jonon eteen,
-    // siirrä muut pikselit yhdellä alaspäin ja poista vanhin pikseli.
-    // Jos ruokaa on syöty, älä poista vanhinta pikselilä.
+    // Jos ruokaa ei ole syöty, lisää uusi pikseli, siirrä
+    // vanhat pikselit yhdellä alaspäin ja poista vanhin.
+    // Jos ruokaa on syöty, älä poista vanhinta.
     if (this.total === this.tail.length) {
       for (var i = 0; i < this.tail.length-1; i++) {
         this.tail[i] = this.tail[i+1];
@@ -50,7 +50,7 @@ function Snake() {
     this.y = this.y + this.yspeed*scl;
   }
 
-  // Screen wrap around, ei kuole kun osuu seiniin
+  // screen wrap around
   this.wrap = function() {
       if (this.x > width-scl) {
           this.x = 0;
@@ -64,10 +64,10 @@ function Snake() {
       }
   }
 
-  // Näytä käärme
+  // näytä käärme
   this.show = function() {
     fill(255);
-    if (peli == false) {
+    if (game == false) {
       fill(255, 255, 255, 50);
     }
     noStroke();
