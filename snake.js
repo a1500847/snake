@@ -7,7 +7,6 @@ function Snake() {
   this.tail = [];
   this.last = 0;  //estää peruuttamisen
 
-  // suunta
   this.dir = function(x, y) {
     this.xspeed = x;
     this.yspeed = y;
@@ -34,11 +33,12 @@ function Snake() {
     }
   }
 
-  // käärmeen liike
+  /*
+  Liiku eteenpäin ja tarkista, onko ruokaa syöty.
+  Jos ei, lisää uusi pikseli ja poista vanhin.
+  Jos on, älä poista vanhinta pikseliä.
+  */
   this.update = function() {
-    // Jos ruokaa ei ole syöty, lisää uusi pikseli, siirrä
-    // vanhat pikselit yhdellä alaspäin ja poista vanhin.
-    // Jos ruokaa on syöty, älä poista vanhinta.
     if (this.total === this.tail.length) {
       for (var i = 0; i < this.tail.length-1; i++) {
         this.tail[i] = this.tail[i+1];
@@ -66,14 +66,19 @@ function Snake() {
 
   // näytä käärme
   this.show = function() {
-    fill(255);
+    fill(155, 255, 155);
     if (game == false) {
-      fill(255, 255, 255, 50);
+      fill(155, 255, 255, 50);
     }
     noStroke();
     for (var i = 0; i < this.tail.length; i++) {
       rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
-    //rect(this.x, this.y, scl, scl);
+  }
+
+  // pysähdy kun peli päättyy
+  this.stop = function() {
+    this.xspeed = 0;
+    this.yspeed = 0;
   }
 }
